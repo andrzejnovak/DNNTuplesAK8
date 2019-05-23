@@ -8,13 +8,14 @@ import ROOT
 #print(args.include)
 
 
-names = ["qcd", "Hcc", "Hbb", "gg", "Z"]
+#names = ["qcd", "Hcc", "Hbb", "gg", "Z"]
+names = ["Hcc"]
 #names = ["GluGluH"]
 #names = ["Hcc", "Hbb", "Z"]
 #names = ["Zqq"]
 
-dcap = "dcap://grid-dcap-extern.physik.rwth-aachen.de/pnfs/physik.rwth-aachen.de/cms/store/user/anovak/tag_comp"
-srm = "srm://grid-srm.physik.rwth-aachen.de:8443/srm/managerv2?SFN=/pnfs/physik.rwth-aachen.de/cms/store/user/anovak/tag_comp"
+dcap = "dcap://grid-dcap-extern.physik.rwth-aachen.de/pnfs/physik.rwth-aachen.de/cms/store/user/anovak/tag_comp_v2"
+srm = "srm://grid-srm.physik.rwth-aachen.de:8443/srm/managerv2?SFN=/pnfs/physik.rwth-aachen.de/cms/store/user/anovak/tag_comp_v2"
 fnal = False
 if fnal:dirs = os.popen("eos root://cmseos.fnal.gov ls /store/group/lpchbb/20180524_ak8_94x/").read().split("\n")
 #else:	dirs = os.popen("gfal-ls "+srm).read().split("\n")
@@ -55,7 +56,7 @@ for i, d in enumerate(dirs):
 			if not s.endswith(tuple(["madgraph", "pythia8", "correctedcfg"])):continue 
 			fs = []
 			sd2 = os.popen("gfal-ls "+srm+"/"+d+"/"+s).read().replace("\n", "")
-			sd3 = os.popen("gfal-ls "+srm+"/"+d+"/"+s+"/"+sd2).read().replace("\n", "")
+			sd3 = os.popen("gfal-ls "+srm+"/"+d+"/"+s+"/"+sd2).read().split("\n")[0]
 			sd4 = os.popen("gfal-ls "+srm+"/"+d+"/"+s+"/"+sd2+"/"+sd3).read().replace("\n", "")
 			files = os.popen("gfal-ls "+srm+"/"+d+"/"+s+"/"+sd2+"/"+sd3+'/'+sd4).read().split("\n")
 			path = dcap+"/"+d+"/"+s+"/"+sd2+"/"+sd3+"/"+sd4

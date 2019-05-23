@@ -4,12 +4,12 @@ import os, sys
 dirs = os.listdir("crab_projects")
 
 for d in dirs:
-	if "QCD" not in d: continue
+	if "4C" not in d: continue
 	#if "1000to1400" in d: continue
 	#if "Inf" in d: continue
 	#os.system('crab resubmit crab_projects/'+d+" --sitewhitelist=T2_DE_RWTH")
 	#os.system('crab resubmit crab_projects/'+d)
-	#continue
+#	continue
 	print 'crab status crab_projects/'+d
 	o = os.popen('crab status crab_projects/'+d).read().split("\n")
 	for i, l in enumerate(o):
