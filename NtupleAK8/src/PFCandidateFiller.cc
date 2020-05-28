@@ -67,10 +67,6 @@ bool PFCandidateFiller::fill(const pat::Jet& jet, size_t jetidx, const JetHelper
 
   std::vector<sorting::sortingClass<size_t>> sortedneutral;
 
-  std::cout << "XXXXXXXXXXXXXXXX " << std::endl;
-  std::cout << "XXXXXXXXXXXXXXXX " << std::endl;
-  std::cout << "XXXXXXXXXXXXXXXX " << std::endl;
-
   const float jet_uncorr_pt=jet.correctedJet("Uncorrected").pt();
 
   unsigned int i = 0;
@@ -78,7 +74,6 @@ bool PFCandidateFiller::fill(const pat::Jet& jet, size_t jetidx, const JetHelper
     if (!pfcand) continue;
     if (pfcand->pt() < minPt_) continue;
     if (pfcand->charge() == 0) {
-      
       neutralPFCands.push_back(pfcand);
       drMinSvMap[pfcand];
       double minDR = 0.8;
@@ -91,8 +86,6 @@ bool PFCandidateFiller::fill(const pat::Jet& jet, size_t jetidx, const JetHelper
 			      (i, -1,
 			       -minDR, pfcand->pt()/jet_uncorr_pt));
       i++;
-
-      std::cout << "Xcharge " << pfcand->charge() << ", dR " << -minDR << ", puppiw " << pfcand->puppiWeight() << std::endl;
     }
   }
 
@@ -109,11 +102,8 @@ bool PFCandidateFiller::fill(const pat::Jet& jet, size_t jetidx, const JetHelper
 
   for (i = 0; i < neutralPFCands.size(); i++){
 
-    const auto *pfcand = neutralPFCands.at(sortedneutral.at(i).get());
-    
+    const auto *pfcand = neutralPFCands.at(sortedneutral.at(i).get());    
     //  const auto *pfcand = neutralPFCands.at(i);
-
-    std::cout << "Xcharge " << pfcand->charge() << ", puppiw " << pfcand->puppiWeight() << std::endl;
 
     if (pfcand->pt() < minPt_) continue;
     // basic kinematics, valid for both charged and neutral
