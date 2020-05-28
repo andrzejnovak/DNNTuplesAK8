@@ -19,7 +19,7 @@ options.inputFiles = [
 #'file:/eos/user/a/anovak/022C3683-D4AB-E611-AC4D-3417EBE70078.root'  #include file: for local files, for catalogues /store..
 '/store/mc/RunIIFall17MiniAODv2/GluGluHToCC_M125_13TeV_powheg_pythia8/MINIAODSIM/PU2017_12Apr2018_94X_mc2017_realistic_v14-v2/30000/72164088-CB67-E811-9D0D-008CFA197AC4.root'
 ]
-options.maxEvents = -1
+options.maxEvents = 10000
 
 options.register('inputScript', '', VarParsing.multiplicity.singleton, VarParsing.varType.string, "input Script")
 options.register('skipEvents', 0, VarParsing.multiplicity.singleton, VarParsing.varType.int, "skip N events")
@@ -63,6 +63,9 @@ process.source = cms.Source('PoolSource',
     fileNames=cms.untracked.vstring(options.inputFiles),
     skipEvents=cms.untracked.uint32(options.skipEvents)
 )
+
+process.source.eventsToProcess = cms.untracked.VEventRange("1:3127296-1:3127297")
+
 
 if options.inputScript:
     process.load(options.inputScript)
