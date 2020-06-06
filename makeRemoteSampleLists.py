@@ -5,14 +5,14 @@ from argparse import ArgumentParser
 #arser.add_argument("--include", help="Path to training sample", default=)
 #args=parser.parse_args()
 #print(args.include)
-list_dir = 'lists_pre'
+list_dir = 'lists_102v3'
 f_dir = '102RE'
 
 #names = ["QCD", "Glu", "Bul", "GluGluH"]
 #names = ["GluGluH"]
 #names = ["Hcc", "Hbb", "Z"]
 #names = ["Hbb"]
-names = ["multimass", 'ggHbb', 'ggHcc', "qcd"]
+names = ["multimass", 'ggHbb', 'ggHcc', "qcd", "Zqq"]
 
 dcap = "dcap://grid-dcap-extern.physik.rwth-aachen.de/pnfs/physik.rwth-aachen.de/cms/store/user/anovak/{}".format(f_dir)
 srm = "srm://grid-srm.physik.rwth-aachen.de:8443/srm/managerv2?SFN=/pnfs/physik.rwth-aachen.de/cms/store/user/anovak/{}".format(f_dir)
