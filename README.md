@@ -2,10 +2,10 @@
 
 ## Setup
 ```
-cmsrel CMSSW_9_4_7
-cd CMSSW_9_4_7/src/
+cmsrel CMSSW_10_2_11
+cd CMSSW_10_2_11/src/
 cmsenv
-git clone https://github.com/DeepDoubleB/DNNTuplesAK8 DeepNTuples -b 94x
+git clone https://github.com/DeepDoubleB/DNNTuplesAK8 DeepNTuples -b master
 scram b -j8
 ```
 
@@ -33,15 +33,13 @@ You can set arguments to be passed to the cmsRun job in the beginning of the sam
  
 ## Merge outputs (with random mixing of different samples)
 
-1. First create the file list.
+1. Create file lists.
 
-N.B. **Files reserved for testing should be placed in a `test_sample` directory by hand before proceeding**!
-
+Appropriately modify
 ```bash
-cd DeepNTuples/NtupleAK8/run
-./createFileList.py [/eos/cms/store/user/$USER/DeepNtuples/output_dir/ttbar]
+python Utilities/scripts/makeRemoteSampleLists.py
+python Utilities/scripts/makeLocalSampleLists.py
 ```
-Note that you need to run this for every sample you produced, e.g., ttbar, qcd, etc.
 
 2. Merge the samples (with random mixing)
 
